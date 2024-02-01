@@ -11,6 +11,7 @@ grav = 0
 attack_start = 0
 attack_5s = false
 attack_5l = false
+attack_5m = false
 stun = 7
 attacking = false
 

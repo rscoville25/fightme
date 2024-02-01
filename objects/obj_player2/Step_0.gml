@@ -15,7 +15,7 @@ if room == room_select {
 
 if room == Room1 {
 	if !instance_exists(chara) {
-		instance_create_layer(1000, 500, "Instances", chara)
+		instance_create_layer(960, 500, "Instances", chara)
 		with chara {
 			player = 1
 			enemy = obj_player1.chara
@@ -25,6 +25,5 @@ if room == Room1 {
 		obj_player1.p1_score += 1
 		room_restart()
 	}
+
 }
-
-

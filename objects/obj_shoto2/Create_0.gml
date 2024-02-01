@@ -11,7 +11,8 @@ grav = 0
 attack_start = 0
 attack_5s = false
 attack_5l = false
-stun = 7
+attack_5m = false
+stun = 0
 attacking = false
 
 if instance_exists(obj_dummy) {

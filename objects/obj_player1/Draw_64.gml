@@ -1,8 +1,8 @@
 if room == room_select {
 	if !ready {
-		draw_sprite(spr_player1, 0, 614, 300)
+		draw_sprite(spr_player1, 0, 576, 300)
 	} else {
-		draw_sprite(spr_player1, 1, 614, 300)
+		draw_sprite(spr_player1, 1, 576, 300)
 	}
 
 }

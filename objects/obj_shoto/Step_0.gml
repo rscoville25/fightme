@@ -1,5 +1,5 @@
 // defines buttons used for basic movement
-var _up_pressed, _down_pressed, _left_pressed, _right_pressed, _light_pressed, _special_pressed
+var _up_pressed, _down_pressed, _left_pressed, _right_pressed, _light_pressed, _medium_pressed, _special_pressed
 if player == 0 {
 	if gamepad_is_connected(0) {
 		_up_pressed = gamepad_button_check(0, gp_padu)
@@ -7,6 +7,7 @@ if player == 0 {
 		_left_pressed = gamepad_button_check(0, gp_padl)
 		_right_pressed = gamepad_button_check(0, gp_padr)
 		_light_pressed = gamepad_button_check_pressed(0, gp_face3)
+		_medium_pressed = gamepad_button_check_pressed(0, gp_face1)
 		_special_pressed = gamepad_button_check(0, gp_face2)
 	} else {
 		_up_pressed = keyboard_check(vk_up)
@@ -14,6 +15,7 @@ if player == 0 {
 		_left_pressed = keyboard_check(vk_left)
 		_right_pressed = keyboard_check(vk_right)
 		_light_pressed = keyboard_check_pressed(ord("A"))
+		_medium_pressed = keyboard_check_pressed(ord("Z"))
 		_special_pressed = keyboard_check_pressed(ord("X"))
 	}
 } else if player == 1 {
@@ -23,6 +25,7 @@ if player == 0 {
 		_left_pressed = gamepad_button_check(1, gp_padl)
 		_right_pressed = gamepad_button_check(1, gp_padr)
 		_light_pressed = gamepad_button_check_pressed(1, gp_face3)
+		_medium_pressed = gamepad_button_check_pressed(1, gp_face1)
 		_special_pressed = gamepad_button_check(1, gp_face2)
 	} else {
 		_up_pressed = keyboard_check(ord("I"))
@@ -30,6 +33,7 @@ if player == 0 {
 		_left_pressed = keyboard_check(ord("J"))
 		_right_pressed = keyboard_check(ord("L"))
 		_light_pressed = keyboard_check_pressed(ord("R"))
+		_medium_pressed = keyboard_check_pressed(ord("F"))
 		_special_pressed = keyboard_check_pressed(ord("G"))
 	}
 }
@@ -61,28 +65,31 @@ if !stun_state {
 	// he needs to walk somehow
 	move_x = (_right_pressed - _left_pressed) * shoto_spd
 	if grounded {
-		if _down_pressed || attacking {
-			x += 0
-		} else if x <= 39 && move_x < 0 {
-			x += 0
-		} else if x >= room_width - 39 && move_x > 0 {
-			x += 0 
-		} else {
-			shoto_spd = 10
-			x += move_x
+		if !place_meeting(x + move_x, y, enemy) {
+			if _down_pressed || attacking {
+				x += 0
+			} else if x <= 39 && move_x < 0 {
+				x += 0
+			} else if x >= room_width - 39 && move_x > 0 {
+				x += 0 
+			} else {
+				shoto_spd = 10
+				x += move_x
 
+			}
 		}
 	} else {
-		if x <= 39 && jump_dir < 0 {
-			x += 0
-		} else if x >= room_width - 39 && jump_dir > 0 {
-			x += 0 
-		} else {
-			shoto_spd = 10
-			x += shoto_spd * jump_dir
+			if x <= 39 && jump_dir < 0 {
+				x += 0
+			} else if x >= room_width - 39 && jump_dir > 0 {
+				x += 0 
+			} else {
+				shoto_spd = 10
+				x += shoto_spd * jump_dir
 
+			}
 		}
-	}
+	
 
 	if !grounded {
 		grav += .5
@@ -166,6 +173,8 @@ if !stun_state {
 		}
 	}
 
+
+
 	if attack_5l && grounded {
 		if obj_system.framecount <= attack_start + 4 {
 			sprite_index = spr_shoto_5L
@@ -174,7 +183,7 @@ if !stun_state {
 		if obj_system.framecount <= attack_start + 7 && obj_system.framecount > attack_start + 4 {
 			hitbox = hitbox_create(25 * image_xscale, 11 * image_yscale, 25 * image_xscale, -29 * image_yscale, 4, stun, obj_shoto)
 			dmg_delt = 10
-			stun = 7
+			stun = 6
 		}
 	
 		if obj_system.framecount > attack_start + 16 {
@@ -183,6 +192,32 @@ if !stun_state {
 			attacking = false
 		}
 	}
+	
+	if _medium_pressed {
+		if !attacking && stunned <= 0 {
+			attack_start = obj_system.framecount
+			attack_5m = true
+			attacking = true
+		}
+	}
+	
+	if attack_5m && grounded {
+		if obj_system.framecount <= attack_start + 6 {
+			sprite_index = spr_shoto_5M
+		} 
+	
+		if obj_system.framecount <= attack_start + 10 && obj_system.framecount > attack_start + 6 {
+			hitbox = hitbox_create(25 * image_xscale, 11 * image_yscale, 25 * image_xscale, -29 * image_yscale, 4, stun, obj_shoto)
+			dmg_delt = 15
+			stun = 8
+		}
+	
+		if obj_system.framecount > attack_start + 21 {
+			dmg_delt = 0
+			attack_5m = false
+			attacking = false
+		}
+	}	
 } else {
 	sprite_index = spr_shoto_stun
 	if enemy.x > x {
@@ -212,6 +247,8 @@ if !stun_state {
 with hurtbox {
 	x = other.x + x_offset
 	y = other.y + y_offset
+	
+	
 	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && !other.attack_5s && other.vuln {
 		audio_play_sound(snd_hit, 10, false, 0.5)
 		other.stunned = 0

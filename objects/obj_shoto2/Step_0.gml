@@ -1,19 +1,41 @@
 // defines buttons used for basic movement
-var _up_pressed, _down_pressed, _left_pressed, _right_pressed, _light_pressed, _special_pressed
+var _up_pressed, _down_pressed, _left_pressed, _right_pressed, _light_pressed, _medium_pressed, _special_pressed
 if player == 0 {
-	_up_pressed = keyboard_check(vk_up)
-	_down_pressed = keyboard_check(vk_down)
-	_left_pressed = keyboard_check(vk_left)
-	_right_pressed = keyboard_check(vk_right)
-	_light_pressed = keyboard_check_pressed(ord("A"))
-	_special_pressed = keyboard_check_pressed(ord("X"))
+	if gamepad_is_connected(0) {
+		_up_pressed = gamepad_button_check(0, gp_padu)
+		_down_pressed = gamepad_button_check(0, gp_padd)
+		_left_pressed = gamepad_button_check(0, gp_padl)
+		_right_pressed = gamepad_button_check(0, gp_padr)
+		_light_pressed = gamepad_button_check_pressed(0, gp_face3)
+		_medium_pressed = gamepad_button_check_pressed(0, gp_face1)
+		_special_pressed = gamepad_button_check(0, gp_face2)
+	} else {
+		_up_pressed = keyboard_check(vk_up)
+		_down_pressed = keyboard_check(vk_down)
+		_left_pressed = keyboard_check(vk_left)
+		_right_pressed = keyboard_check(vk_right)
+		_light_pressed = keyboard_check_pressed(ord("A"))
+		_medium_pressed = keyboard_check_pressed(ord("Z"))
+		_special_pressed = keyboard_check_pressed(ord("X"))
+	}
 } else if player == 1 {
-	_up_pressed = keyboard_check(ord("I"))
-	_down_pressed = keyboard_check(ord("K"))
-	_left_pressed = keyboard_check(ord("J"))
-	_right_pressed = keyboard_check(ord("L"))
-	_light_pressed = keyboard_check_pressed(ord("R"))
-	_special_pressed = keyboard_check_pressed(ord("G"))
+	if gamepad_is_connected(1) {
+		_up_pressed = gamepad_button_check(1, gp_padu)
+		_down_pressed = gamepad_button_check(1, gp_padd)
+		_left_pressed = gamepad_button_check(1, gp_padl)
+		_right_pressed = gamepad_button_check(1, gp_padr)
+		_light_pressed = gamepad_button_check_pressed(1, gp_face3)
+		_medium_pressed = gamepad_button_check_pressed(1, gp_face1)
+		_special_pressed = gamepad_button_check(1, gp_face2)
+	} else {
+		_up_pressed = keyboard_check(ord("I"))
+		_down_pressed = keyboard_check(ord("K"))
+		_left_pressed = keyboard_check(ord("J"))
+		_right_pressed = keyboard_check(ord("L"))
+		_light_pressed = keyboard_check_pressed(ord("R"))
+		_medium_pressed = keyboard_check_pressed(ord("F"))
+		_special_pressed = keyboard_check_pressed(ord("G"))
+	}
 }
 
 if stunned <= 0 {
@@ -43,17 +65,19 @@ if !stun_state {
 
 	// he needs to walk somehow
 	move_x = (_right_pressed - _left_pressed) * shoto_spd
-	if grounded {
-		if _down_pressed || attacking {
-			x += 0
-		} else if x <= 39 && move_x < 0 {
-			x += 0
-		} else if x >= room_width - 39 && move_x > 0 {
-			x += 0 
-		} else {
-			shoto_spd = 10
-			x += move_x
+if grounded {
+		if !place_meeting(x + move_x, y, enemy) {
+			if _down_pressed || attacking {
+				x += 0
+			} else if x <= 39 && move_x < 0 {
+				x += 0
+			} else if x >= room_width - 39 && move_x > 0 {
+				x += 0 
+			} else {
+				shoto_spd = 10
+				x += move_x
 
+			}
 		}
 	} else {
 		if x <= 39 && jump_dir < 0 {
@@ -166,6 +190,33 @@ if !stun_state {
 			attacking = false
 		}
 	}
+	
+	if _medium_pressed {
+		if !attacking && stunned <= 0 {
+			attack_start = obj_system.framecount
+			attack_5m = true
+			attacking = true
+		}
+	}
+	
+	if attack_5m && grounded {
+		if obj_system.framecount <= attack_start + 6 {
+			sprite_index = spr_shoto_5M
+		} 
+	
+		if obj_system.framecount <= attack_start + 10 && obj_system.framecount > attack_start + 6 {
+			hitbox = hitbox_create(25 * image_xscale, 11 * image_yscale, 25 * image_xscale, -29 * image_yscale, 4, stun, obj_shoto)
+			dmg_delt = 15
+			stun = 8
+		}
+	
+		if obj_system.framecount > attack_start + 21 {
+			dmg_delt = 0
+			attack_5m = false
+			attacking = false
+		}
+	}	
+
 } else {
 	sprite_index = spr_shoto_stun
 	if enemy.x > x {
