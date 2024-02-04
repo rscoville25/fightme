@@ -33,6 +33,8 @@ image_yscale = 3
 image_blend = c_red
 
 hp = 1000
+super = 0
+max_super = 300
 dmg_delt = 0
 
 stun_state = false

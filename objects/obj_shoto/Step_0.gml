@@ -340,11 +340,17 @@ with hurtbox {
 		if other.stun_state {
 			other.enemy.combo += 1 / other.enemy.hitbox.active
 		}
+		if other.enemy.super < other.enemy.max_super {
+			other.enemy.super += other.enemy.dmg_delt / 3
+		}
 	}
 	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && !other.vuln {
 		audio_play_sound(snd_hit, 10, false, 0.5)
 		other.sprite_index = spr_shoto_block
 		other.hp -= other.enemy.dmg_delt / 10
+		if other.super < other.max_super {
+			other.super += other.enemy.dmg_delt / 3
+		}
 	}
 }
 

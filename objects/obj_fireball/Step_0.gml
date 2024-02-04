@@ -24,8 +24,14 @@ with hitbox {
 		if other.owner.enemy.vuln {
 			other.owner.enemy.hp -= other.dmg_delt
 			other.owner.enemy.stunned += other.stun
+			if other.owner.enemy.super < other.owner.enemy.max_super {
+				other.owner.enemy.super += other.owner.enemy.dmg_delt / 3
+			}
 		} else {
 			other.owner.enemy.hp -= other.dmg_delt / 10
+			if other.owner.super < other.owner.max_super {
+				other.owner.super += other.owner.enemy.dmg_delt / 3
+			}
 		}
 		instance_destroy()
 	}

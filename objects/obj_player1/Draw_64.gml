@@ -8,8 +8,11 @@ if room == room_select {
 }
 
 if room == Room1 {
-	draw_healthbar(0, 0, (room_width / 2 - 64), 64, (chara.hp/1000)*100, c_yellow, c_red, c_red, 0, true, false)
-	draw_text(24, 64 + 12, string(p1_score))
+	draw_healthbar(0, 0, (room_width / 2 - 64), 64, (chara.hp/1000)*100, c_yellow, c_red, c_red, 1, true, false)
+	draw_healthbar(0, 64 + 2, ((room_width / 2 - 64) / 3) - 6, 64 + 14, chara.super - 200, c_white, c_blue, c_blue, 1, true, false)
+	draw_healthbar((room_width / 2 - 64) / 3, 64 + 2, (2 * (room_width / 2 - 64) / 3) - 6, 64 + 14, chara.super - 100, c_white, c_blue, c_blue, 1, true, false)
+	draw_healthbar(2 * (room_width / 2 - 64) / 3, 64 + 2, (3 * (room_width / 2 - 64) / 3), 64 + 14, chara.super, c_white, c_blue, c_blue, 1, true, false)
+	draw_text(24, 64 + 24, string(p1_score))
 	
 	if chara.combo > 1 {
 		draw_text(24, 128 + 26, string(chara.combo))

@@ -328,19 +328,27 @@ if !stun_state {
 with hurtbox {
 	x = other.x + x_offset
 	y = other.y + y_offset
-	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && other.vuln {
+	
+	
+	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && !other.attack_5s && other.vuln {
 		audio_play_sound(snd_hit, 10, false, 0.5)
 		other.stunned = 0
 		other.hp -= other.enemy.dmg_delt
 		other.stunned += other.enemy.stun
 		if other.stun_state {
-			other.enemy.combo += 1
+			other.enemy.combo += 1 / other.enemy.hitbox.active
+		}
+		if other.enemy.super < other.enemy.max_super {
+			other.enemy.super += 2
 		}
 	}
 	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && !other.vuln {
 		audio_play_sound(snd_hit, 10, false, 0.5)
 		other.sprite_index = spr_shoto_block
 		other.hp -= other.enemy.dmg_delt / 10
+		if other.super < other.max_super {
+			other.super += 2
+		}
 	}
 }
 

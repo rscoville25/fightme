@@ -32,6 +32,8 @@ image_xscale = 3.4
 image_yscale = 3
 
 hp = 1000
+super = 0
+max_super = 300
 dmg_delt = 0
 
 stun_state = false
