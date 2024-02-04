@@ -64,6 +64,7 @@
     {"id":{"name":"spr_hitbox","path":"sprites/spr_hitbox/spr_hitbox.yy",},},
     {"id":{"name":"spr_local","path":"sprites/spr_local/spr_local.yy",},},
     {"id":{"name":"fnt_score","path":"fonts/fnt_score/fnt_score.yy",},},
+    {"id":{"name":"spr_shoto_5H","path":"sprites/spr_shoto_5H/spr_shoto_5H.yy",},},
     {"id":{"name":"hurtbox_create","path":"scripts/hurtbox_create/hurtbox_create.yy",},},
     {"id":{"name":"spr_shoto_block","path":"sprites/spr_shoto_block/spr_shoto_block.yy",},},
     {"id":{"name":"room_main_menu","path":"rooms/room_main_menu/room_main_menu.yy",},},

@@ -42,6 +42,7 @@
     {"name":"spr_shoto_fireball","order":3,"path":"sprites/spr_shoto_fireball/spr_shoto_fireball.yy",},
     {"name":"spr_option_selected","order":3,"path":"sprites/spr_option_selected/spr_option_selected.yy",},
     {"name":"fnt_score","order":1,"path":"fonts/fnt_score/fnt_score.yy",},
+    {"name":"spr_shoto_5H","order":8,"path":"sprites/spr_shoto_5H/spr_shoto_5H.yy",},
     {"name":"hurtbox_create","order":1,"path":"scripts/hurtbox_create/hurtbox_create.yy",},
     {"name":"spr_shoto_block","order":7,"path":"sprites/spr_shoto_block/spr_shoto_block.yy",},
     {"name":"room_main_menu","order":2,"path":"rooms/room_main_menu/room_main_menu.yy",},

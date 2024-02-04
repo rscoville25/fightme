@@ -16,8 +16,11 @@ attack_start = 0
 attack_5s = false
 attack_5l = false
 attack_5m = false
+attack_5h = false
 stun = 7
 attacking = false
+combo = 0
+last_combo = combo
 
 if instance_exists(obj_dummy) {
 	enemy = obj_dummy
