@@ -29,7 +29,7 @@
   "physicsShapePoints": [],
   "physicsStartAwake": true,
   "properties": [],
-  "solid": true,
+  "solid": false,
   "spriteId": {
     "name": "spr_shoto_idle",
     "path": "sprites/spr_shoto_idle/spr_shoto_idle.yy",

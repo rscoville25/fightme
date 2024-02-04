@@ -1,5 +1,9 @@
 // move the dude
-shoto_spd = 10
+if obj_system.turbo {
+	shoto_spd = 20	
+} else {
+	shoto_spd = 10
+}
 move_x = 0
 dir_facing = 0
 grounded = true

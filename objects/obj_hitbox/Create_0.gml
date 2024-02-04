@@ -5,3 +5,7 @@ y_offset = 0
 active = 0
 hitstun = 0
 did_hit = false
+
+if obj_system.boxes_vis {
+	visible = true
+}

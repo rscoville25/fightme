@@ -64,9 +64,14 @@ if !stun_state {
 	}
 
 	// he needs to walk somehow
+	if obj_system.turbo {
+		shoto_spd = 20	
+	} else {
+		shoto_spd = 10
+	}
 	move_x = (_right_pressed - _left_pressed) * shoto_spd
-if grounded {
-		if !place_meeting(x + move_x, y, enemy) {
+	if grounded {
+		if !place_meeting(x + move_x, y, enemy.hurtbox) {
 			if _down_pressed || attacking {
 				x += 0
 			} else if x <= 39 && move_x < 0 {
@@ -205,7 +210,7 @@ if grounded {
 		} 
 	
 		if obj_system.framecount <= attack_start + 10 && obj_system.framecount > attack_start + 6 {
-			hitbox = hitbox_create(25 * image_xscale, 11 * image_yscale, 25 * image_xscale, -29 * image_yscale, 4, stun, obj_shoto)
+			hitbox = hitbox_create(25 * image_xscale, 11 * image_yscale, 25 * image_xscale, -20 * image_yscale, 4, stun, obj_shoto)
 			dmg_delt = 15
 			stun = 8
 		}
@@ -226,7 +231,7 @@ if grounded {
 			x -= 0
 			
 		} else {
-			x -= 3
+			x -= enemy.dmg_delt * 0.1
 		}
 
 	}
@@ -238,7 +243,7 @@ if grounded {
 			x += 0
 			
 		} else {
-			x += 3
+			x += enemy.dmg_delt * 0.1
 		}
 	}
 }
@@ -246,11 +251,16 @@ if grounded {
 with hurtbox {
 	x = other.x + x_offset
 	y = other.y + y_offset
-	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && !other.attack_5s && other.vuln {
+	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && other.vuln {
 		audio_play_sound(snd_hit, 10, false, 0.5)
 		other.stunned = 0
 		other.hp -= other.enemy.dmg_delt
 		other.stunned += other.enemy.stun
+	}
+	if place_meeting(x, y, obj_hitbox) && !place_meeting(x, y, other.hitbox) && !other.vuln {
+		audio_play_sound(snd_hit, 10, false, 0.5)
+		other.sprite_index = spr_shoto_block
+		other.hp -= other.enemy.dmg_delt / 10
 	}
 }
 
