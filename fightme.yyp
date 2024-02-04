@@ -42,6 +42,7 @@
   "resources": [
     {"id":{"name":"room_select","path":"rooms/room_select/room_select.yy",},},
     {"id":{"name":"fnt_options","path":"fonts/fnt_options/fnt_options.yy",},},
+    {"id":{"name":"spr_exit","path":"sprites/spr_exit/spr_exit.yy",},},
     {"id":{"name":"obj_shoto2","path":"objects/obj_shoto2/obj_shoto2.yy",},},
     {"id":{"name":"obj_fireball","path":"objects/obj_fireball/obj_fireball.yy",},},
     {"id":{"name":"spr_shoto_crouch","path":"sprites/spr_shoto_crouch/spr_shoto_crouch.yy",},},
@@ -49,6 +50,7 @@
     {"id":{"name":"snd_select","path":"sounds/snd_select/snd_select.yy",},},
     {"id":{"name":"spr_dummy","path":"sprites/spr_dummy/spr_dummy.yy",},},
     {"id":{"name":"spr_shoto_idle","path":"sprites/spr_shoto_idle/spr_shoto_idle.yy",},},
+    {"id":{"name":"spr_online","path":"sprites/spr_online/spr_online.yy",},},
     {"id":{"name":"spr_fireball","path":"sprites/spr_fireball/spr_fireball.yy",},},
     {"id":{"name":"obj_hurtbox","path":"objects/obj_hurtbox/obj_hurtbox.yy",},},
     {"id":{"name":"spr_ground","path":"sprites/spr_ground/spr_ground.yy",},},

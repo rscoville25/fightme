@@ -5,11 +5,23 @@ if room == room_main_menu {
 		} else {
 			draw_sprite(spr_local, 1, 640, 100)
 		}
+		
+		if main_menu_select != 1 {
+			draw_sprite(spr_online, 0, 640, 164)
+		} else {
+			draw_sprite(spr_online, 1, 640, 164)
+		}
 	
 		if main_menu_select != 2 {
-			draw_sprite(spr_options, 0, 640, 164)
+			draw_sprite(spr_options, 0, 640, 228)
 		} else {
-			draw_sprite(spr_options, 1, 640, 164)
+			draw_sprite(spr_options, 1, 640, 228)
+		}
+		
+		if main_menu_select != 3 {
+			draw_sprite(spr_exit, 0, 640, 292)
+		} else {
+			draw_sprite(spr_exit, 1, 640, 292)
 		}
 	}
 	

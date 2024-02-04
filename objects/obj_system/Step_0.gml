@@ -29,12 +29,12 @@ if room == room_main_menu {
 			if main_menu_select > 0 {
 				main_menu_select -= 1
 			} else {
-				main_menu_select = 2
+				main_menu_select = 3
 			}
 		}
 		if keyboard_check_pressed(vk_down) {
 			audio_play_sound(snd_select, 10, false)
-			if main_menu_select < 2 {
+			if main_menu_select < 3 {
 				main_menu_select += 1
 			} else {
 				main_menu_select = 0
@@ -44,9 +44,14 @@ if room == room_main_menu {
 			if main_menu_select == 0 {
 				audio_play_sound(snd_select, 10, false, 1, 0, 1.1)
 				room_goto(room_select)
-			} else if main_menu_select == 2 {
+			} 
+			if main_menu_select == 2 {
 				audio_play_sound(snd_select, 10, false, 1, 0, 1.1)
 				options_screen = true
+			} 
+			if main_menu_select == 3 {
+				audio_play_sound(snd_select, 10, false, 1, 0, 0.9)
+				game_end()
 			}
 		}
 	} else {
@@ -102,6 +107,8 @@ if room == room_main_menu {
 			ini_write_real("options", "boxes_vis", boxes_vis)
 			ini_write_real("options", "turbo", turbo)
 			ini_close()
+			audio_play_sound(snd_select, 10, false, 1, 0, 0.9)
+			
 		}
 	}
 }
