@@ -291,7 +291,7 @@ if !stun_state {
 					x -= 0
 			
 				} else {
-					x -= 1
+					x += 1
 				}
 
 			}
@@ -303,7 +303,7 @@ if !stun_state {
 					x += 0
 			
 				} else {
-					x += 1
+					x -= 1
 				}
 			}
 			hitbox = hitbox_create(25 * image_xscale, 11 * image_yscale, 25 * image_xscale, -20 * image_yscale, 5, stun, obj_shoto)
