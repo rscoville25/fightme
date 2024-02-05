@@ -92,7 +92,7 @@ if !stun_state {
 			}
 		} 
 	} else {
-		if !place_meeting(x + move_x, y + jump_dir, enemy) {
+		if !place_meeting(x + move_x, y - enemy.sprite_height/2, enemy) {
 			if x <= 39 && jump_dir < 0 {
 				x += 0
 			} else if x >= room_width - 39 && jump_dir > 0 {
