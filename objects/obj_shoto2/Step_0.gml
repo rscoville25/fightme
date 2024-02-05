@@ -178,6 +178,18 @@ if !stun_state {
 				}
 			}
 		}
+		if _light_pressed && obj_system.framecount > attack_start + 16 && obj_system.framecount <= attack_start + 32 {
+			attack_5s = false
+			attack_5l = true
+		}
+		if _medium_pressed && obj_system.framecount > attack_start + 16 && obj_system.framecount <= attack_start + 32 {
+			attack_5s = false
+			attack_5m = true
+		}
+		if _heavy_pressed && obj_system.framecount > attack_start + 16 && obj_system.framecount <= attack_start + 32 {
+			attack_5s = false
+			attack_5h = true
+		}
 	
 		if obj_system.framecount > attack_start + 32 {
 			attack_5s = false
