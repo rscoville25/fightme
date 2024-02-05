@@ -250,7 +250,7 @@ if !stun_state {
 		if obj_system.framecount <= attack_start + 10 && obj_system.framecount > attack_start + 6 {
 			hitbox = hitbox_create(25 * image_xscale, 11 * image_yscale, 25 * image_xscale, -20 * image_yscale, 4, stun, obj_shoto)
 			dmg_delt = 15
-			stun = 8
+			stun = 17
 		}
 		
 		if _light_pressed && obj_system.framecount > attack_start + 10 && obj_system.framecount <= attack_start + 21 {
