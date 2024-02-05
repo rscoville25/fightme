@@ -59,6 +59,7 @@
     {"id":{"name":"spr_shoto_stun","path":"sprites/spr_shoto_stun/spr_shoto_stun.yy",},},
     {"id":{"name":"spr_shoto_5L","path":"sprites/spr_shoto_5L/spr_shoto_5L.yy",},},
     {"id":{"name":"spr_player1","path":"sprites/spr_player1/spr_player1.yy",},},
+    {"id":{"name":"spr_shoto_jl","path":"sprites/spr_shoto_jl/spr_shoto_jl.yy",},},
     {"id":{"name":"spr_shoto_fireball","path":"sprites/spr_shoto_fireball/spr_shoto_fireball.yy",},},
     {"id":{"name":"spr_option_selected","path":"sprites/spr_option_selected/spr_option_selected.yy",},},
     {"id":{"name":"spr_hitbox","path":"sprites/spr_hitbox/spr_hitbox.yy",},},

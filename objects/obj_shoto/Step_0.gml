@@ -90,8 +90,9 @@ if !stun_state {
 				x += move_x
 
 			}
-		}
+		} 
 	} else {
+		if !place_meeting(x + move_x, y + jump_dir, enemy) {
 			if x <= 39 && jump_dir < 0 {
 				x += 0
 			} else if x >= room_width - 39 && jump_dir > 0 {
@@ -100,7 +101,14 @@ if !stun_state {
 				x += shoto_spd * jump_dir
 
 			}
-		}
+		} else {
+			if enemy.x > x {
+				x -= 10
+			} else if enemy.x < x {
+				x += 10
+			}
+		}			
+	}
 	
 
 	if !grounded {
@@ -204,6 +212,23 @@ if !stun_state {
 			attack_5l = true
 		}
 	
+		if obj_system.framecount > attack_start + 16 {
+			dmg_delt = 0
+			attack_5l = false
+			attacking = false
+		}
+	}
+
+	if attack_5l && !grounded {
+		if obj_system.framecount <= attack_start + 6 {
+			sprite_index = spr_shoto_jl
+		}
+		if obj_system.framecount <= attack_start + 16 && obj_system.framecount > attack_start + 6 {
+			dmg_delt = 10
+			stun = 22
+			hitbox = hitbox_create(44 * image_xscale, 15 * image_yscale, -20 * image_xscale, 28 * image_yscale, 10, stun, obj_shoto)
+
+		}
 		if obj_system.framecount > attack_start + 16 {
 			dmg_delt = 0
 			attack_5l = false
@@ -338,7 +363,7 @@ with hurtbox {
 		other.hp -= other.enemy.dmg_delt
 		other.stunned += other.enemy.stun
 		if other.stun_state {
-			other.enemy.combo += 1 / other.enemy.hitbox.active
+			other.enemy.combo += 1
 		}
 		if other.enemy.super < other.enemy.max_super {
 			other.enemy.super += other.enemy.dmg_delt / 3

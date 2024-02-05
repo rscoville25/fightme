@@ -39,6 +39,7 @@
     {"name":"spr_options_menu","order":2,"path":"sprites/spr_options_menu/spr_options_menu.yy",},
     {"name":"spr_shoto_stun","order":5,"path":"sprites/spr_shoto_stun/spr_shoto_stun.yy",},
     {"name":"spr_shoto_5L","order":4,"path":"sprites/spr_shoto_5L/spr_shoto_5L.yy",},
+    {"name":"spr_shoto_jl","order":9,"path":"sprites/spr_shoto_jl/spr_shoto_jl.yy",},
     {"name":"spr_shoto_fireball","order":3,"path":"sprites/spr_shoto_fireball/spr_shoto_fireball.yy",},
     {"name":"spr_option_selected","order":3,"path":"sprites/spr_option_selected/spr_option_selected.yy",},
     {"name":"fnt_score","order":1,"path":"fonts/fnt_score/fnt_score.yy",},
