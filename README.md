@@ -43,8 +43,17 @@
  The game will automatically detect up to 12 gamepads. Untested with PS4/PS5/Nintendo Switch. All Xbox and PS3 pads are confirmed to work.
 
 # known bugs
- -Player 1 light attack does not do damage until player 2 uses their light attack
+
+ * No damage with normals can be delt until each player uses one
  
- -Hitboxes on player 2 side do not line up correctly with the character sprites
+ * There can only be one fireball on the screen at a time, even with multiple characters with fireballs
+ 
+ * Player sprite stuttering when in contact with other player sprite while jumping
+
+ * No sound for fireball hit (very easy fix)
+
+ * Shoto j.L hitbox not large enough
+
+ * Fireballs do not count towards combo length
 
   
